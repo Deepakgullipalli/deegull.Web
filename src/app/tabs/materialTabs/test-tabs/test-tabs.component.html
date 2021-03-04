@@ -1,0 +1,61 @@
+<mat-tab-group class="demo-tab-group" #matgroup>
+    <mat-tab label="Tab 1">
+      <div class="demo-tab-content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+        Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+        In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+        feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+        orci enim rutrum enim, vel tempor sapien arcu a tellus.
+      </div>
+    </mat-tab>
+    <mat-tab label="Tab 2">
+      <ng-template mat-tab-label>
+        ⭐
+      </ng-template>
+      <div class="demo-tab-content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+        Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+        In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+        feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+        orci enim rutrum enim, vel tempor sapien arcu a tellus.
+      </div>  
+    </mat-tab>
+    <mat-tab label="Tab 3">
+      No content  
+    </mat-tab>
+    <mat-tab label="Tab 4">
+     <div class="demo-tab-content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+        Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+        In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+        feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+        orci enim rutrum enim, vel tempor sapien arcu a tellus.
+        <br />
+        <br />
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+        Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+        In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+        feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+        orci enim rutrum enim, vel tempor sapien arcu a tellus.
+      </div>  
+    </mat-tab>
+    <mat-tab label="Tab 5">
+      No content  
+    </mat-tab>
+    <mat-tab label="Tab 6">
+      No content  
+    </mat-tab>
+  </mat-tab-group>
+  
+  <button (click)='matgroup.selectedIndex = 0'>Go To 1st</button>
+  <button (click)='matgroup.selectedIndex = 1'>Go To 2nd</button>
+  <button (click)='matgroup.selectedIndex = 2'>Go To 3rd</button>
+  
+  <br/>
+  <br/>
+  
+  <button (click)="selectNext(matgroup)">Just Next</button>
+  
+  <!-- Copyright 2017 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->

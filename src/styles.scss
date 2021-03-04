@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Importing Bootstrap SCSS file. */
+// @import '~bootstrap/scss/bootstrap';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+// ::-webkit-scrollbar {
+//         height: 4px;
+//         width: 4px;
+//     }
+
+  .test-scroll-body{
+    max-height: 250px ;
+    overflow-y: auto ;
+}
+.test-scroll-body2{
+    max-height: 250px ;
+    overflow-y: auto ;
+}
+
+    /* width */
+    .test-scroll-body2::-webkit-scrollbar {
+        width: 4px;
+      }
+      
+      /* Track */
+      .test-scroll-body2::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+       
+      /* Handle */
+      .test-scroll-body2::-webkit-scrollbar-thumb {
+        background: #888; 
+      }
+      
+      /* Handle on hover */
+      .test-scroll-body2::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }
