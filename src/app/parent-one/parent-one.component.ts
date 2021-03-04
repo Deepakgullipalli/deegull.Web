@@ -17,6 +17,7 @@ export class ParentOneComponent implements OnInit {
   ];
   elementsTv: any;
   selectedRow: Element;
+  showFiller = false;
   displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
   ngOnInit(): void {
     this.elementsTv = ELEMENT_DATA;

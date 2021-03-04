@@ -139,7 +139,10 @@ import { MatTreeModule } from '@angular/material/tree';
     CdkTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule,
+    MatButtonModule,
+    MatButtonToggleModule
   ],
   exports: [
     MatDialogModule,
