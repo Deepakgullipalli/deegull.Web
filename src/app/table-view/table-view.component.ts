@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -16,8 +17,10 @@ export class TableViewComponent implements OnInit {
   @Input() elementsTv;
   displayedColumns: any;
   columns: any;
-  tableElements: Element[];
-  dataSource:MatTableDataSource<Element>;
+  tableElements: any;
+  dataSource: MatTableDataSource<any>;
+  selection = new SelectionModel<any>(false, []);
+  selectedRow: any;
   ngOnInit(): void {
     this.displayedColumns = this.displayTableViewColumns;
     this.columns = this.columnsTv;
@@ -27,17 +30,18 @@ export class TableViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  
-  
-
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  OnTableRowSelection(row: any) {
+    this.selectedRow = row;
   }
 }
 

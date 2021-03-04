@@ -20,6 +20,8 @@ import { ThinScrollComponent } from './thin-scroll/thin-scroll.component';
 import { MyMatAccordionComponent } from './my-mat-accordion/my-mat-accordion.component';
 import { MyMatDrawerComponent } from './my-mat-drawer/my-mat-drawer.component';
 import { TableViewComponent } from './table-view/table-view.component';
+import { ParentOneComponent } from './parent-one/parent-one.component';
+import { ParentTwoComponent } from './parent-two/parent-two.component';
 
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
@@ -85,8 +87,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-import { ParentOneComponent } from './parent-one/parent-one.component';
-import { ParentTwoComponent } from './parent-two/parent-two.component';
+
 
 @NgModule({
   declarations: [
@@ -138,11 +139,11 @@ import { ParentTwoComponent } from './parent-two/parent-two.component';
     CdkTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MatSelectModule
   ],
   exports: [
     MatDialogModule,
     MatTabsModule,
-
     A11yModule,
     ClipboardModule,
     CdkStepperModule,
@@ -186,7 +187,8 @@ import { ParentTwoComponent } from './parent-two/parent-two.component';
     MatTreeModule,
     OverlayModule,
     PortalModule,
-    ScrollingModule
+    ScrollingModule,
+    
   ],
   providers: [AuthGuardService, AuthService, TestService,
     {
