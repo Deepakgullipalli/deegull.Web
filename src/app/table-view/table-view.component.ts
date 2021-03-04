@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -20,7 +20,7 @@ export class TableViewComponent implements OnInit {
   tableElements: any;
   dataSource: MatTableDataSource<any>;
   selection = new SelectionModel<any>(false, []);
-  selectedRow: any;
+  @Output() onTableRowSelected = new EventEmitter<any>();
   ngOnInit(): void {
     this.displayedColumns = this.displayTableViewColumns;
     this.columns = this.columnsTv;
@@ -41,7 +41,7 @@ export class TableViewComponent implements OnInit {
   }
 
   OnTableRowSelection(row: any) {
-    this.selectedRow = row;
+    this.onTableRowSelected.emit(row);
   }
 }
 

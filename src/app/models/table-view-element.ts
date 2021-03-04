@@ -5,9 +5,8 @@ export interface Element {
     symbol: string;
 }
 export interface ElementTwo {
-    name: string;
-    position: number;
-    symbol: string;
+    department: string;
+    abbreviation: string;
 }
 export const ELEMENT_DATA: Element[] = [
     { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
@@ -18,9 +17,9 @@ export const ELEMENT_DATA: Element[] = [
 ];
 
 export const ELEMENT_DATA_2: ElementTwo[] = [
-    { position: 1, name: 'Hydrogen',  symbol: 'H' },
-    { position: 2, name: 'Helium',  symbol: 'He' },
-    { position: 3, name: 'Lithium',  symbol: 'Li' },
-    { position: 4, name: 'Beryllium',  symbol: 'Be' },
-    { position: 5, name: 'Boron',  symbol: 'B' },
+    {  department: 'SOS',  abbreviation: 'SS' },
+    {  department: 'HumanResources',  abbreviation: 'HR' },
+    {  department: 'Dev',  abbreviation: 'D' },
+    {  department: 'Test',  abbreviation: 'Te' },
+    {  department: 'Managers',  abbreviation: 'Man' },
 ];

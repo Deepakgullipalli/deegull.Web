@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ELEMENT_DATA_2 } from '../models/table-view-element';
+import { ElementTwo, ELEMENT_DATA_2 } from '../models/table-view-element';
 
 @Component({
   selector: 'app-parent-two',
@@ -10,13 +10,16 @@ export class ParentTwoComponent implements OnInit {
 
   constructor() { }
   columnsTv = [
-    { columnDef: 'position', header: 'No.2', cell: (element: any) => `${element.position}` },
-    { columnDef: 'name', header: 'Name2', cell: (element: any) => `${element.name}` },
-    { columnDef: 'symbol', header: 'Symbol2', cell: (element: any) => `${element.symbol}` },
+    { columnDef: 'department', header: 'Department', cell: (element: any) => `${element.department}` },
+    { columnDef: 'abbreviation', header: 'Acronym', cell: (element: any) => `${element.abbreviation}` },
   ];
   elementsTv = ELEMENT_DATA_2;
   displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
+  selectedRow: ElementTwo;
   ngOnInit(): void {
+  }
+  SetCardInfo(row: any){
+    this.selectedRow = row;
   }
 
 }

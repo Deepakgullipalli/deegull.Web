@@ -16,9 +16,13 @@ export class ParentOneComponent implements OnInit {
     { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
   ];
   elementsTv: any;
+  selectedRow: Element;
   displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
   ngOnInit(): void {
     this.elementsTv = ELEMENT_DATA;
+  }
+  SetCardInfo(row: any){
+    this.selectedRow = row;
   }
 
 }
