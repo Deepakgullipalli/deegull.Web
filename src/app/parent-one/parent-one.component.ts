@@ -25,5 +25,18 @@ export class ParentOneComponent implements OnInit {
   SetCardInfo(row: any){
     this.selectedRow = row;
   }
+  step = 0;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
 
 }
