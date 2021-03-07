@@ -8,9 +8,8 @@
   }
 
   .example-container {
-    width: 500px;
-    height: 300px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    width: 98%;
+    height: 95%;
   }
   
   .example-sidenav-content {
@@ -28,6 +27,12 @@
   .example-headers-align .mat-expansion-panel-header-title,
 .example-headers-align .mat-expansion-panel-header-description {
   flex-basis: 0;
+  
+}
+
+.panel-border{
+  margin-left: 1px;
+  margin-right: 1px;
 }
 
 .example-headers-align .mat-expansion-panel-header-description {

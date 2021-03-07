@@ -1,26 +1,60 @@
 <mat-drawer-container autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side" position="end">
-        <button type="button" mat-button (click)="drawer.close()">
-            Close sidenav
-        </button>
+        <h2>Trial Location</h2>
         <mat-accordion class="example-headers-align">
-            <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+            <mat-expansion-panel class="panel-border" style="margin-top: 1px;" [expanded]="step === 0"
+                (opened)="setStep(0)" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Personal data
+                        General Information
                     </mat-panel-title>
-                    <mat-panel-description>
-                        Type your name and age
-                        <mat-icon>account_circle</mat-icon>
-                    </mat-panel-description>
                 </mat-expansion-panel-header>
-
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Standard form field</mat-label>
+                        <input matInput [ngModel]="selectedRow.position">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Standard form field</mat-label>
+                        <input matInput placeholder="Placeholder">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Standard form field</mat-label>
+                        <input matInput placeholder="Placeholder">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Standard form field</mat-label>
+                        <input matInput placeholder="Placeholder">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Standard form field</mat-label>
+                        <input matInput placeholder="Placeholder">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Standard form field</mat-label>
+                        <input matInput placeholder="Placeholder">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Standard form field</mat-label>
+                        <input matInput placeholder="Placeholder">
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Standard form field</mat-label>
+                        <input matInput placeholder="Placeholder">
+                    </mat-form-field>
+                </div>
             </mat-expansion-panel>
 
-            <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+            <mat-expansion-panel class="panel-border" [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Destination
+                        Plant information
                     </mat-panel-title>
                     <mat-panel-description>
                         Type the country name
@@ -29,10 +63,10 @@
 
             </mat-expansion-panel>
 
-            <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+            <mat-expansion-panel class="panel-border" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Day of the trip
+                        Plot Estimation
                     </mat-panel-title>
                     <mat-panel-description>
                         Inform the date you wish to travel
@@ -43,11 +77,14 @@
             </mat-expansion-panel>
 
         </mat-accordion>
+        <button type="button" style="float: right;margin-top: 1%;" mat-button (click)="drawer.close()">
+            Close
+        </button>
     </mat-drawer>
 
     <div>
         <app-table-view [displayTableViewColumns]="displayedTableViewColumns" [columnsTv]="columnsTv"
             [elementsTv]="elementsTv" (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-table-view>
     </div>
-
+    
 </mat-drawer-container>

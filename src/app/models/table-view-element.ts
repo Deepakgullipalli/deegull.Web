@@ -1,4 +1,4 @@
-export interface Element {
+export class Element {
     name: string;
     position: number;
     weight: number;

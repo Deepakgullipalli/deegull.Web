@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ELEMENT_DATA } from '../models/table-view-element';
+import { ELEMENT_DATA, Element } from '../models/table-view-element';
 
 @Component({
   selector: 'app-parent-one',
@@ -16,7 +16,7 @@ export class ParentOneComponent implements OnInit {
     { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
   ];
   elementsTv: any;
-  selectedRow: Element;
+  selectedRow: Element = new Element();
   showFiller = false;
   displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
   ngOnInit(): void {
