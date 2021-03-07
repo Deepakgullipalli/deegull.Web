@@ -12,17 +12,21 @@ import { MatTableDataSource } from '@angular/material/table';
 export class TableViewComponent implements OnInit {
 
   constructor() { }
-  @Input() displayTableViewColumns;
+  @Input() displayTableViewColumns: string[];
   @Input() columnsTv;
   @Input() elementsTv;
-  displayedColumns: any;
+  displayedColumns: string[] = ['modification'];
   columns: any;
   tableElements: any;
   dataSource: MatTableDataSource<any>;
   selection = new SelectionModel<any>(false, []);
   @Output() onTableRowSelected = new EventEmitter<any>();
   ngOnInit(): void {
-    this.displayedColumns = this.displayTableViewColumns;
+    this.displayTableViewColumns.push('comments')
+    this.getColumns().then((cols:string[])=>{
+      this.displayedColumns.push(...cols);
+    })
+    //this.displayedColumns = this.displayTableViewColumns;
     this.columns = this.columnsTv;
     this.tableElements = this.elementsTv;
     this.dataSource = new MatTableDataSource(this.tableElements);
@@ -42,6 +46,12 @@ export class TableViewComponent implements OnInit {
 
   OnTableRowSelection(row: any) {
     this.onTableRowSelected.emit(row);
+  }
+  getColumns(){
+    /*assume this is an api*/
+    return new Promise((resolve,reject)=>{
+      resolve(this.displayTableViewColumns);
+    })
   }
 }
 
