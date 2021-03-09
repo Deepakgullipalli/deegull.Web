@@ -2,89 +2,92 @@
 
     <mat-drawer #drawer class="example-sidenav" mode="side" position="end">
         <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar" [disabled]="disabled">
-            <h2>Trial Location</h2>
+            <div style="margin-right: 5px;">
+                <h2>Trial Location</h2>
 
-            <mat-accordion class="example-headers-align">
-                <mat-expansion-panel class="panel-border" style="margin-top: 1px;" [expanded]="step === 0"
-                    (opened)="setStep(0)" hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            General Information
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Standard form field</mat-label>
-                            <input matInput [ngModel]="selectedRow.position">
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Standard form field</mat-label>
-                            <input matInput placeholder="Placeholder">
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Standard form field</mat-label>
-                            <input matInput placeholder="Placeholder">
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Standard form field</mat-label>
-                            <input matInput placeholder="Placeholder">
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Standard form field</mat-label>
-                            <input matInput placeholder="Placeholder">
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Standard form field</mat-label>
-                            <input matInput placeholder="Placeholder">
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Standard form field</mat-label>
-                            <input matInput placeholder="Placeholder">
-                        </mat-form-field>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Value binding</mat-label>
-                            <input matInput [matDatepicker]="picker3" [value]="date.value">
-                            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-                            <mat-datepicker #picker3></mat-datepicker>
-                          </mat-form-field>
-                    </div>
-                </mat-expansion-panel>
+                <mat-accordion class="example-headers-align">
+                    <mat-expansion-panel class="panel-border" style="margin-top: 1px;" [expanded]="step === 0"
+                        (opened)="setStep(0)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                General Information
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput [ngModel]="selectedRow.position">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" style="width: 180px;">
+                                <mat-label>Value binding</mat-label>
+                                <input matInput [matDatepicker]="picker3" [value]="date.value">
+                                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                <mat-datepicker #picker3></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </mat-expansion-panel>
 
-                <mat-expansion-panel class="panel-border" [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Plant information
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Type the country name
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
+                    <mat-expansion-panel class="panel-border" [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Plant information
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Type the country name
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
 
-                </mat-expansion-panel>
+                    </mat-expansion-panel>
 
-                <mat-expansion-panel class="panel-border" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Plot Estimation
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Inform the date you wish to travel
-                            <mat-icon>date_range</mat-icon>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
+                    <mat-expansion-panel class="panel-border" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Plot Estimation
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Inform the date you wish to travel
+                                <mat-icon>date_range</mat-icon>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
 
-                </mat-expansion-panel>
+                    </mat-expansion-panel>
 
-            </mat-accordion>
-            <button type="button" style="float: right;margin-top: 1%;" mat-button (click)="drawer.close()">
-                Close
-            </button>
+                </mat-accordion>
+                <button type="button" style="float: right;margin-top: 1%;" mat-button (click)="drawer.close()">
+                    Close
+                </button>
+            </div>
+
         </ng-scrollbar>
 
     </mat-drawer>
