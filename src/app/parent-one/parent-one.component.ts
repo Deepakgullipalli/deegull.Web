@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ELEMENT_DATA, Element } from '../models/table-view-element';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-parent-one',
@@ -18,7 +19,9 @@ export class ParentOneComponent implements OnInit {
   elementsTv: any;
   selectedRow: Element = new Element();
   showFiller = false;
+  disabled = false;
   displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
+  date = new FormControl(new Date());
   ngOnInit(): void {
     this.elementsTv = ELEMENT_DATA;
   }

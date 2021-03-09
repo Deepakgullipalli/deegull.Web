@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { NgScrollbarModule } from 'ngx-scrollbar'
+
 import { AppComponent } from './app.component';
 import { ProtectedComponent } from './protected/protected.component';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
@@ -141,7 +143,9 @@ import { MatTreeModule } from '@angular/material/tree';
     MatSelectModule,
     MatCardModule,
     MatButtonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    NgScrollbarModule,
+    MatDatepickerModule
   ],
   exports: [
     MatDialogModule,
