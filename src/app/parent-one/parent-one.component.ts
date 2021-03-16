@@ -21,7 +21,7 @@ export class ParentOneComponent implements OnInit {
   showFiller = false;
   disabled = false;
   displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
-  date = new FormControl(new Date());
+  date = new FormControl();
   ngOnInit(): void {
     this.elementsTv = ELEMENT_DATA;
   }

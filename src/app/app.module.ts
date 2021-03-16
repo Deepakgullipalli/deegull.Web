@@ -88,6 +88,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+import { ExpandableTableComponent } from './expandable-table/expandable-table.component';
 
 
 @NgModule({
@@ -110,7 +111,8 @@ import { MatTreeModule } from '@angular/material/tree';
     MyMatDrawerComponent,
     TableViewComponent,
     ParentOneComponent,
-    ParentTwoComponent
+    ParentTwoComponent,
+    ExpandableTableComponent
   ],
   imports: [
     AppRoutingModule,
