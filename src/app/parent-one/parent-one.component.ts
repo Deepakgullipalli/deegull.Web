@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ELEMENT_DATA, Element } from '../models/table-view-element';
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-parent-one',
@@ -25,7 +25,7 @@ export class ParentOneComponent implements OnInit {
   ngOnInit(): void {
     this.elementsTv = ELEMENT_DATA;
   }
-  SetCardInfo(row: any){
+  SetCardInfo(row: any) {
     this.selectedRow = row;
   }
   step = 0;
