@@ -26,7 +26,6 @@ export class TableViewComponent implements OnInit {
     this.getColumns().then((cols:string[])=>{
       this.displayedColumns.push(...cols);
     })
-    //this.displayedColumns = this.displayTableViewColumns;
     this.columns = this.columnsTv;
     this.tableElements = this.elementsTv;
     this.dataSource = new MatTableDataSource(this.tableElements);

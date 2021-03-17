@@ -1,8 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { Address, User, USERS } from '../models/expand-table-element';
+import { Address } from '../models/expand-table-element';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-expandable-table',
@@ -17,38 +19,62 @@ import { Address, User, USERS } from '../models/expand-table-element';
   ]
 })
 export class ExpandableTableComponent implements OnInit {
+  @Input() displayTableViewColumns: string[];
+  @Input() columnsTv;
+  @Input() elementsTv;
+  @Input() childTableColumns;
+  displayedColumns: string[] = ['modification'];
+  columns: any;
+  tableElements: any;
+  dataSource: MatTableDataSource<any>;
+  selection = new SelectionModel<any>(false, []);
+  @Output() onTableRowSelected = new EventEmitter<any>();
+  @Output() onChildTableRowSelected = new EventEmitter<any>();
   @ViewChild('outerSort', { static: true }) sort: MatSort;
   @ViewChildren('innerSort') innerSort: QueryList<MatSort>;
-  @ViewChildren('innerTables') innerTables: QueryList<MatTable<Address>>;
+  @ViewChildren('innerTables') innerTables: QueryList<MatTable<any>>;
 
-  dataSource: MatTableDataSource<User>;
-  usersData: User[] = [];
-  columnsToDisplay = ['name', 'email', 'phone'];
-  innerDisplayedColumns = ['street', 'zipCode', 'city'];
-  expandedElement: User | null;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  innerDisplayedColumns: any;
+  expandedElement: any | null;
   constructor(private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-    USERS.forEach(user => {
-      if (user.addresses && Array.isArray(user.addresses) && user.addresses.length) {
-        this.usersData = [...this.usersData, {...user, addresses: new MatTableDataSource(user.addresses)}];
-      } else {
-        this.usersData = [...this.usersData, user];
-      }
-    });
-    this.dataSource = new MatTableDataSource(this.usersData);
+    this.displayTableViewColumns.push('comments');
+    this.innerDisplayedColumns = this.childTableColumns;
+    this.getColumns().then((cols:string[])=>{
+      this.displayedColumns.push(...cols);
+    })
+    this.columns = this.columnsTv;
+    this.tableElements = this.elementsTv;
+    this.dataSource = new MatTableDataSource(this.tableElements);
+  }
+
+  toggleRow(element: any) {
+    this.onTableRowSelected.emit(element);
+    element.addresses && (element.addresses as MatTableDataSource<any>).data.length ? (this.expandedElement = this.expandedElement === element ? null : element) : null;
+    this.cd.detectChanges();
+    this.innerTables.forEach((table, index) => (table.dataSource as MatTableDataSource<any>).sort = this.innerSort.toArray()[index]);
+  }
+  innertoggleRow(element: any){
+    this.onChildTableRowSelected.emit(element);
+  }
+  applyFilter(filterValue: string) {
+    //this.innerTables.forEach((table, index) => (table.dataSource as MatTableDataSource<Address>).filter = filterValue.trim().toLowerCase());
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
+
+  getColumns(){
+    return new Promise((resolve,reject)=>{
+      resolve(this.displayTableViewColumns);
+    })
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
-  toggleRow(element: User) {
-    element.addresses && (element.addresses as MatTableDataSource<Address>).data.length ? (this.expandedElement = this.expandedElement === element ? null : element) : null;
-    this.cd.detectChanges();
-    this.innerTables.forEach((table, index) => (table.dataSource as MatTableDataSource<Address>).sort = this.innerSort.toArray()[index]);
-  }
-
-  applyFilter(filterValue: string) {
-    this.innerTables.forEach((table, index) => (table.dataSource as MatTableDataSource<Address>).filter = filterValue.trim().toLowerCase());
-  }
-
 }
 

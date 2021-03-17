@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ELEMENT_DATA, Element } from '../models/table-view-element';
 import { FormControl } from '@angular/forms';
+import { Address, USERS, USERS_2, User_2 } from '../models/expand-table-element';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-parent-one',
@@ -16,17 +18,34 @@ export class ParentOneComponent implements OnInit {
     { columnDef: 'weight', header: 'Weight', cell: (element: any) => `${element.weight}` },
     { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
   ];
+  childTableColumns = ['street', 'zipCode', 'city'];
   elementsTv: any;
   selectedRow: Element = new Element();
   showFiller = false;
   disabled = false;
   displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
   date = new FormControl();
+  usersData: User_2[] = [];
+  selectedChildRow: Address = new Address();
+  enableChildInfo: boolean = false;
   ngOnInit(): void {
-    this.elementsTv = ELEMENT_DATA;
+    USERS_2.forEach(user => {
+      if (user.addresses && Array.isArray(user.addresses) && user.addresses.length) {
+        this.usersData = [...this.usersData, {...user, addresses: new MatTableDataSource(user.addresses)}];
+      } else {
+        this.usersData = [...this.usersData, user];
+      }
+    });
+    this.elementsTv = this.usersData;
   }
   SetCardInfo(row: any) {
+    this.enableChildInfo = false;
     this.selectedRow = row;
+  }
+
+  SetChildCardInfo(row: any) {
+    this.enableChildInfo = true;
+    this.selectedChildRow = row;
   }
   step = 0;
 

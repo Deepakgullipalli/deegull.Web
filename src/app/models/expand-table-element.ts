@@ -151,3 +151,70 @@ export interface PeriodicElement {
       ]
     }
   ];
+
+  export class User_2 {
+    name: string;
+    position: string;
+    weight: string;
+    symbol: string;
+    addresses?: Address[] | MatTableDataSource<Address>;
+  }
+  
+  export class Address {
+    street: string;
+    zipCode: string;
+    city: string;
+  }
+  
+  export class UserDataSource_2 {
+    name: string;
+    position: string;
+    weight: string;
+    symbol: string;
+    addresses?: MatTableDataSource<Address>;
+  }
+
+  export const USERS_2: User_2[] = [
+    {
+      name: "Mason",
+      position: "mason@test.com",
+      weight: "9864785214",
+      symbol: "De",
+      addresses: [
+        {
+          street: "Street 1",
+          zipCode: "78542",
+          city: "Kansas"
+        },
+        {
+          street: "Street 2",
+          zipCode: "78554",
+          city: "Texas"
+        }
+      ]
+    },
+    {
+      name: "Eugene",
+      position: "2@test.com",
+      weight: "7428654",
+      symbol: "Ne",
+    },
+    {
+      name: "Jason",
+      position: "3@test.com",
+      weight: "0598379",
+      symbol: "La",
+      addresses: [
+        {
+          street: "Street 5",
+          zipCode: "23547",
+          city: "Utah"
+        },
+        {
+          street: "Street 5",
+          zipCode: "23547",
+          city: "Ohio"
+        }
+      ]
+    }
+  ];
