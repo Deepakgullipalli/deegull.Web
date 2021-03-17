@@ -20,8 +20,7 @@ export class ParentOneComponent implements OnInit {
   ];
   childTableColumns = ['street', 'zipCode', 'city'];
   elementsTv: any;
-  selectedRow: Element = new Element();
-  showFiller = false;
+  selectedRow: User_2 = new User_2();
   disabled = false;
   displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
   date = new FormControl();
@@ -31,7 +30,7 @@ export class ParentOneComponent implements OnInit {
   ngOnInit(): void {
     USERS_2.forEach(user => {
       if (user.addresses && Array.isArray(user.addresses) && user.addresses.length) {
-        this.usersData = [...this.usersData, {...user, addresses: new MatTableDataSource(user.addresses)}];
+        this.usersData = [...this.usersData, { ...user, child: new MatTableDataSource(user.addresses) }];
       } else {
         this.usersData = [...this.usersData, user];
       }

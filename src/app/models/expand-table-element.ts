@@ -157,7 +157,15 @@ export interface PeriodicElement {
     position: string;
     weight: string;
     symbol: string;
+    child?: Address[] | MatTableDataSource<Address>;
     addresses?: Address[] | MatTableDataSource<Address>;
+  }
+
+  export class User_3 {
+    department: string;
+    abbreviation: string;
+    child?: Address_2[] | MatTableDataSource<Address_2>;
+    newaddresses?: Address_2[] | MatTableDataSource<Address_2>;
   }
   
   export class Address {
@@ -165,14 +173,19 @@ export interface PeriodicElement {
     zipCode: string;
     city: string;
   }
-  
-  export class UserDataSource_2 {
-    name: string;
-    position: string;
-    weight: string;
-    symbol: string;
-    addresses?: MatTableDataSource<Address>;
+
+  export class Address_2 {
+    newstreet: string;
+    newzipCode: string;
   }
+  
+  // export class UserDataSource_2 {
+  //   name: string;
+  //   position: string;
+  //   weight: string;
+  //   symbol: string;
+  //   addresses?: MatTableDataSource<Address>;
+  // }
 
   export const USERS_2: User_2[] = [
     {
@@ -214,6 +227,41 @@ export interface PeriodicElement {
           street: "Street 5",
           zipCode: "23547",
           city: "Ohio"
+        }
+      ]
+    }
+  ];
+
+  export const USERS_3: User_3[] = [
+    {
+      department: "1name",
+      abbreviation: "mason@test.com",
+      newaddresses: [
+        {
+          newstreet: "1 Street 1",
+          newzipCode: "78542"
+        },
+        {
+          newstreet: "2 Street 2",
+          newzipCode: "95165"
+        }
+      ]
+    },
+    {
+      department: "2name",
+      abbreviation: "2mason@test.com",
+    },
+    {
+      department: "3name",
+      abbreviation: "3mason@test.com",
+      newaddresses: [
+        {
+          newstreet: "3 Street 3",
+          newzipCode: "854226"
+        },
+        {
+          newstreet: "4 Street 4",
+          newzipCode: "33333"
         }
       ]
     }

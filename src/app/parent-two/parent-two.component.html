@@ -1,4 +1,110 @@
-<div>
+<!-- <div>
     <app-table-view [displayTableViewColumns]="displayedTableViewColumns" [columnsTv]="columnsTv"
         [elementsTv]="elementsTv" (onTableRowSelected)="SetCardInfo($event)"></app-table-view>
-</div>
+</div> -->
+<mat-drawer-container autosize>
+
+    <mat-drawer #drawer class="example-sidenav" mode="side" position="end">
+        <ng-scrollbar #scrollable track="all" pointerEventsMethod="scrollbar" [disabled]="disabled">
+            <div style="margin-right: 5px;">
+                <h2>Trial Location</h2>
+
+                <mat-accordion class="example-headers-align">
+                    <mat-expansion-panel class="panel-border" style="margin-top: 1px;" [expanded]="step === 0"
+                        (opened)="setStep(0)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                General Information
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput [ngModel]="selectedRow.department">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Standard form field</mat-label>
+                                <input matInput placeholder="Placeholder">
+                            </mat-form-field>
+                        </div>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel class="panel-border" [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Plant information
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Type the country name
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel class="panel-border" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Plot Estimation
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel class="panel-border" [expanded]="step === 3" (opened)="setStep(3)" hideToggle *ngIf="enableChildInfo">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Child Info
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Standard form field</mat-label>
+                            <input matInput [ngModel]="selectedChildRow.newstreet">
+                        </mat-form-field>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <button type="button" style="float: right;margin-top: 1%;" mat-button (click)="drawer.close()">
+                    Close
+                </button>
+            </div>
+
+        </ng-scrollbar>
+
+    </mat-drawer>
+
+
+    <div>
+        <!-- <app-table-view [displayTableViewColumns]="displayedTableViewColumns" [columnsTv]="columnsTv"
+            [elementsTv]="elementsTv" (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-table-view> -->
+        <app-expandable-table [displayTableViewColumns]="displayedTableViewColumns" [columnsTv]="columnsTv"
+            [childTableColumns]="childTableColumns" [elementsTv]="elementsTv"
+            (onTableRowSelected)="SetCardInfo($event);drawer.open()"
+            (onChildTableRowSelected)="SetChildCardInfo($event)"></app-expandable-table>
+    </div>
+
+</mat-drawer-container>
