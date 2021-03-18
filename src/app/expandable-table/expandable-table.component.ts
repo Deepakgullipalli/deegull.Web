@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -11,8 +11,8 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./expandable-table.component.scss'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ]
@@ -36,13 +36,13 @@ export class ExpandableTableComponent implements OnInit {
   @ViewChildren('innerSort') innerSort: QueryList<MatSort>;
   @ViewChildren('innerTables') innerTables: QueryList<MatTable<any>>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  
+  @ViewChildren(MatPaginator) paginator1: QueryList<MatPaginator>;
   constructor(private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.displayTableViewColumns.push('comments');
     this.innerDisplayedColumns = this.childTableColumns;
-    this.getColumns().then((cols:string[])=>{
+    this.getColumns().then((cols: string[]) => {
       this.displayedColumns.push(...cols);
     })
     this.columns = this.columnsTv;
@@ -54,9 +54,12 @@ export class ExpandableTableComponent implements OnInit {
     this.onTableRowSelected.emit(element);
     element.child && (element.child as MatTableDataSource<any>).data.length ? (this.expandedElement = this.expandedElement === element ? null : element) : null;
     this.cd.detectChanges();
-    this.innerTables.forEach((table, index) => (table.dataSource as MatTableDataSource<any>).sort = this.innerSort.toArray()[index]);
+    this.innerTables.forEach((table, index) => {
+      (table.dataSource as MatTableDataSource<any>).paginator = this.paginator1.toArray()[index],
+        (table.dataSource as MatTableDataSource<any>).sort = this.innerSort.toArray()[index]
+    });
   }
-  innertoggleRow(element: any){
+  innertoggleRow(element: any) {
     this.onChildTableRowSelected.emit(element);
   }
   applyFilter(filterValue: string) {
@@ -66,8 +69,8 @@ export class ExpandableTableComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  getColumns(){
-    return new Promise((resolve,reject)=>{
+  getColumns() {
+    return new Promise((resolve, reject) => {
       resolve(this.displayTableViewColumns);
     })
   }

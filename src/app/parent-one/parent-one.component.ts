@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ELEMENT_DATA, Element } from '../models/table-view-element';
 import { FormControl } from '@angular/forms';
 import { Address, USERS, USERS_2, User_2 } from '../models/expand-table-element';
 import { MatTableDataSource } from '@angular/material/table';

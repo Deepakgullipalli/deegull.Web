@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Address_2, USERS_3, User_3 } from '../models/expand-table-element';
-import { ElementTwo, ELEMENT_DATA_2 } from '../models/table-view-element';
 
 @Component({
   selector: 'app-parent-two',

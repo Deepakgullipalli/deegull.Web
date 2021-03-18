@@ -47,7 +47,6 @@ export class TableViewComponent implements OnInit {
     this.onTableRowSelected.emit(row);
   }
   getColumns(){
-    /*assume this is an api*/
     return new Promise((resolve,reject)=>{
       resolve(this.displayTableViewColumns);
     })
