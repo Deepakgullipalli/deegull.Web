@@ -11,17 +11,28 @@ import { MatTableDataSource } from '@angular/material/table';
 export class ParentOneComponent implements OnInit {
 
   constructor() { }
+  // columnsTv = [
+  //   { columnDef: 'position', header: 'No.', cell: (element: any) => `${element.position}` },
+  //   { columnDef: 'name', header: 'Name', cell: (element: any) => `${element.name}` },
+  //   { columnDef: 'weight', header: 'Weight', cell: (element: any) => `${element.weight}` },
+  //   { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
+  // ];
   columnsTv = [
-    { columnDef: 'position', header: 'No.', cell: (element: any) => `${element.position}` },
-    { columnDef: 'name', header: 'Name', cell: (element: any) => `${element.name}` },
-    { columnDef: 'weight', header: 'Weight', cell: (element: any) => `${element.weight}` },
-    { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
+    { field: 'position', header: 'Position' },
+    { field: 'name', header: 'Name' },
+    { field: 'weight', header: 'Weight' },
+    { field: 'symbol', header: 'Symbol' }
   ];
+  // childcolumnsTv = [
+  //   { field: 'street', header: 'Street' },
+  //   { field: 'zipCode', header: 'ZipCode' },
+  //   { field: 'city', header: 'City' }
+  // ];
   childTableColumns = ['street', 'zipCode', 'city'];
   elementsTv: any;
   selectedRow: User_2 = new User_2();
   disabled = false;
-  displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
+  //displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
   date = new FormControl();
   usersData: User_2[] = [];
   selectedChildRow: Address = new Address();

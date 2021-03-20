@@ -24,9 +24,21 @@ import { MyMatDrawerComponent } from './my-mat-drawer/my-mat-drawer.component';
 import { TableViewComponent } from './table-view/table-view.component';
 import { ParentOneComponent } from './parent-one/parent-one.component';
 import { ParentTwoComponent } from './parent-two/parent-two.component';
+import { ExpandableTableComponent } from './expandable-table/expandable-table.component';
+import { PrimeTableComponent } from './prime-table/prime-table.component';
 
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { CalendarModule } from 'primeng/calendar';
+import { SliderModule } from 'primeng/slider';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ContextMenuModule } from 'primeng/contextmenu';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { InputTextModule } from 'primeng/inputtext';
+import { RatingModule } from 'primeng/rating';
 
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
@@ -88,7 +100,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-import { ExpandableTableComponent } from './expandable-table/expandable-table.component';
+
 
 
 @NgModule({
@@ -112,7 +124,8 @@ import { ExpandableTableComponent } from './expandable-table/expandable-table.co
     TableViewComponent,
     ParentOneComponent,
     ParentTwoComponent,
-    ExpandableTableComponent
+    ExpandableTableComponent,
+    PrimeTableComponent
   ],
   imports: [
     AppRoutingModule,
@@ -147,7 +160,21 @@ import { ExpandableTableComponent } from './expandable-table/expandable-table.co
     MatButtonModule,
     MatButtonToggleModule,
     NgScrollbarModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    TableModule,
+    CalendarModule,
+		SliderModule,
+		DialogModule,
+		MultiSelectModule,
+		ContextMenuModule,
+		DropdownModule,
+		ButtonModule,
+		ToastModule,
+    InputTextModule,
+    ProgressBarModule,
+    HttpClientModule,
+    FormsModule,
+    RatingModule,
   ],
   exports: [
     MatDialogModule,
@@ -195,8 +222,8 @@ import { ExpandableTableComponent } from './expandable-table/expandable-table.co
     MatTreeModule,
     OverlayModule,
     PortalModule,
-    ScrollingModule,
-    
+    ScrollingModule
+
   ],
   providers: [AuthGuardService, AuthService, TestService,
     {

@@ -82,7 +82,8 @@
 
                     </mat-expansion-panel>
 
-                    <mat-expansion-panel class="panel-border" [expanded]="step === 3" (opened)="setStep(3)" hideToggle *ngIf="enableChildInfo">
+                    <mat-expansion-panel class="panel-border" [expanded]="step === 3" (opened)="setStep(3)" hideToggle
+                        *ngIf="enableChildInfo">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
                                 Child Info
@@ -94,7 +95,8 @@
                         </mat-form-field>
                     </mat-expansion-panel>
                 </mat-accordion>
-                <button type="button" style="float: right;margin-top: 1%;margin-right: 3%;" mat-button (click)="drawer.close()">
+                <button type="button" style="float: right;margin-top: 1%;margin-right: 3%;" mat-button
+                    (click)="drawer.close()">
                     Close
                 </button>
             </div>
@@ -107,10 +109,12 @@
     <div>
         <!-- <app-table-view [displayTableViewColumns]="displayedTableViewColumns" [columnsTv]="columnsTv"
             [elementsTv]="elementsTv" (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-table-view> -->
-        <app-expandable-table [displayTableViewColumns]="displayedTableViewColumns" [columnsTv]="columnsTv"
+        <!-- <app-expandable-table [displayTableViewColumns]="displayedTableViewColumns" [columnsTv]="columnsTv"
             [childTableColumns]="childTableColumns" [elementsTv]="elementsTv"
             (onTableRowSelected)="SetCardInfo($event);drawer.open()"
-            (onChildTableRowSelected)="SetChildCardInfo($event)"></app-expandable-table>
+            (onChildTableRowSelected)="SetChildCardInfo($event)"></app-expandable-table> -->
+        <app-prime-table [columnsTv]="columnsTv"
+            [elementsTv]="elementsTv" (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-prime-table>
     </div>
 
 </mat-drawer-container>
