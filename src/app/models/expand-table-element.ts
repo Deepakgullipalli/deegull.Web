@@ -157,8 +157,13 @@ export interface PeriodicElement {
     position: string;
     weight: string;
     symbol: string;
+    test?: test2;
     child?: Address[] | MatTableDataSource<Address>;
-    addresses?: Address[] | MatTableDataSource<Address>;
+    addresses?: Address[];
+  }
+  export class test2{
+    typename: string;
+    id: string;
   }
 
   export class User_3 {
@@ -193,6 +198,7 @@ export interface PeriodicElement {
       position: "mason@test.com",
       weight: "9864785214",
       symbol: "De",
+      test: {typename:"jsd",id:"jxgh"},
       addresses: [
         {
           street: "Street 1",
@@ -211,12 +217,14 @@ export interface PeriodicElement {
       position: "2@test.com",
       weight: "7428654",
       symbol: "Ne",
+      test: {typename:"2jsd",id:"jxgh"},
     },
     {
       name: "Jason",
       position: "3@test.com",
       weight: "0598379",
       symbol: "La",
+      test: {typename:"3jsd",id:"jxgh"},
       addresses: [
         {
           street: "Street 5",

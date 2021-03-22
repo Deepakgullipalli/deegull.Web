@@ -40,3 +40,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       .test-scroll-body2::-webkit-scrollbar-thumb:hover {
         background: #555; 
       }
+
+      tr{
+        vertical-align: baseline;
+      }
