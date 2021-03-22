@@ -95,7 +95,7 @@
                         </mat-form-field>
                     </mat-expansion-panel>
 
-                    <mat-expansion-panel class="panel-border" [expanded]="step === 3" (opened)="setStep(3)" hideToggle
+                    <!-- <mat-expansion-panel class="panel-border" [expanded]="step === 3" (opened)="setStep(3)" hideToggle
                         *ngIf="enableChildTable">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
@@ -104,7 +104,7 @@
                         </mat-expansion-panel-header>
                         <app-prime-table [columnsTv]="childcolumnsTv" [elementsTv]="childelementsTv"
                             (onChildTableRowSelected)="SetChildCardInfo($event)"></app-prime-table>
-                    </mat-expansion-panel>
+                    </mat-expansion-panel> -->
                 </mat-accordion>
                 <button type="button" style="float: right;margin-top: 1%;margin-right: 3%;" mat-button
                     (click)="drawer.close()">
@@ -118,14 +118,15 @@
 
 
     <div style="height: 400pt;">
+        <app-table-view  (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-table-view>
         <!-- <app-table-view [displayTableViewColumns]="displayedTableViewColumns" [columnsTv]="columnsTv"
             [elementsTv]="elementsTv" (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-table-view> -->
         <!-- <app-expandable-table [displayTableViewColumns]="displayedTableViewColumns" [columnsTv]="columnsTv"
             [childTableColumns]="childTableColumns" [elementsTv]="elementsTv"
             (onTableRowSelected)="SetCardInfo($event);drawer.open()"
             (onChildTableRowSelected)="SetChildCardInfo($event)"></app-expandable-table> -->
-        <app-prime-table [columnsTv]="columnsTv" [elementsTv]="elementsTv"
-            (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-prime-table>
+        <!-- <app-prime-table [columnsTv]="columnsTv" [elementsTv]="elementsTv"
+            (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-prime-table> -->
     </div>
 
 </mat-drawer-container>

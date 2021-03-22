@@ -3,6 +3,8 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
+import { TableService } from '../services/table.service';
 
 @Component({
   selector: 'app-table-view',
@@ -11,16 +13,21 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class TableViewComponent implements OnInit {
 
-  constructor() { }
-  @Input() displayTableViewColumns: string[];
-  @Input() columnsTv;
-  @Input() elementsTv;
+  constructor(private _tableService: TableService) { 
+    this.tableInfosubscription = this._tableService.getTableInfo().subscribe(message => { 
+      this.columnsTv = message.columns; this.elementsTv = message.elements;
+      this.displayTableViewColumns = message.displayCols });
+  }
+   displayTableViewColumns: string[];
+   columnsTv;
+   elementsTv;
   displayedColumns: string[] = ['modification'];
   columns: any;
   tableElements: any;
   dataSource: MatTableDataSource<any>;
   selection = new SelectionModel<any>(false, []);
   @Output() onTableRowSelected = new EventEmitter<any>();
+  tableInfosubscription: Subscription;
   ngOnInit(): void {
     this.displayTableViewColumns.push('comments')
     this.getColumns().then((cols:string[])=>{

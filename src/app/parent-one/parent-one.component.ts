@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Address, test2, USERS, USERS_2, User_2 } from '../models/expand-table-element';
 import { MatTableDataSource } from '@angular/material/table';
+import { TableService } from '../services/table.service';
 
 @Component({
   selector: 'app-parent-one',
@@ -10,19 +11,19 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ParentOneComponent implements OnInit {
 
-  constructor() { }
-  // columnsTv = [
-  //   { columnDef: 'position', header: 'No.', cell: (element: any) => `${element.position}` },
-  //   { columnDef: 'test', header: 'Name', cell: (element: any) => `${element.test.typename}` },
-  //   { columnDef: 'weight', header: 'Weight', cell: (element: any) => `${element.weight}` },
-  //   { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
-  // ];
+  constructor(private _tableService: TableService) { }
   columnsTv = [
-    { field: 'position', header: 'Position'},
-    { field: 'test', header: 'Name' },
-    { field: 'weight', header: 'Weight' },
-    { field: 'symbol', header: 'Symbol' }
+    { columnDef: 'position', header: 'No.', cell: (element: any) => `${element.position}` },
+    { columnDef: 'test', header: 'Name', cell: (element: any) => `${element.test.typename}` },
+    { columnDef: 'weight', header: 'Weight', cell: (element: any) => `${element.weight}` },
+    { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
   ];
+  // columnsTv = [
+  //   { field: 'position', header: 'Position'},
+  //   { field: 'test', header: 'Name' },
+  //   { field: 'weight', header: 'Weight' },
+  //   { field: 'symbol', header: 'Symbol' }
+  // ];
   childcolumnsTv = [
     { field: 'street', header: 'Street' },
     { field: 'zipCode', header: 'ZipCode' },
@@ -33,7 +34,7 @@ export class ParentOneComponent implements OnInit {
   childelementsTv: Address[];
   selectedRow: User_2 = new User_2();
   disabled = false;
-  //displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
+  displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
   date = new FormControl();
   usersData: User_2[] = [];
   selectedChildRow: Address = new Address();
@@ -48,6 +49,8 @@ export class ParentOneComponent implements OnInit {
       }
     });
     this.elementsTv = this.usersData;
+    this._tableService.sendTableInfo({ columns: this.columnsTv, elements: this.elementsTv,
+      displayCols: this.displayedTableViewColumns })
   }
   SetCardInfo(row: any) {
     // if(row instanceof Address){
@@ -56,12 +59,12 @@ export class ParentOneComponent implements OnInit {
     // }
     // else if(row instanceof User_2){
       this.enableChildInfo = false;
-      this.enableChildTable = false;
+      //this.enableChildTable = false;
       this.selectedRow = row;
-      if(row.addresses.length > 0 ){
-        this.enableChildTable = true;
-        this.childelementsTv = row.addresses;
-      }
+      // if(row.addresses.length > 0 ){
+      //   this.enableChildTable = true;
+      //   this.childelementsTv = row.addresses;
+      // }
     //}
     
   }
