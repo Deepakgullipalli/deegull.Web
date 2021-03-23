@@ -57,32 +57,8 @@
                         </div>
                     </mat-expansion-panel>
 
-                    <mat-expansion-panel class="panel-border" [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                Plant information
-                            </mat-panel-title>
-                            <mat-panel-description>
-                                Type the country name
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
 
-                    </mat-expansion-panel>
-
-                    <mat-expansion-panel class="panel-border" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                Plot Estimation
-                            </mat-panel-title>
-                            <mat-panel-description>
-                                Inform the date you wish to travel
-                                <mat-icon>date_range</mat-icon>
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
-
-                    </mat-expansion-panel>
-
-                    <mat-expansion-panel class="panel-border" [expanded]="step === 3" (opened)="setStep(3)" hideToggle
+                    <mat-expansion-panel class="panel-border" [expanded]="step === 2" (opened)="setStep(2)" hideToggle
                         *ngIf="enableChildInfo">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
@@ -90,21 +66,40 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-form-field appearance="standard">
-                            <mat-label>Standard form field</mat-label>
+                            <mat-label>Street</mat-label>
                             <input matInput [ngModel]="selectedChildRow.street">
                         </mat-form-field>
                     </mat-expansion-panel>
 
-                    <!-- <mat-expansion-panel class="panel-border" [expanded]="step === 3" (opened)="setStep(3)" hideToggle
+                    <mat-expansion-panel class="panel-border" [expanded]="step === 3" (opened)="setStep(3)" hideToggle
                         *ngIf="enableChildTable">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
                                 Child Table
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <app-prime-table [columnsTv]="childcolumnsTv" [elementsTv]="childelementsTv"
-                            (onChildTableRowSelected)="SetChildCardInfo($event)"></app-prime-table>
-                    </mat-expansion-panel> -->
+                        <!-- <app-prime-table [columnsTv]="childcolumnsTv" [elementsTv]="childelementsTv"
+                            (onChildTableRowSelected)="SetChildCardInfo($event)"></app-prime-table> -->
+                            <p-table [columns]="childcolumnsTv" [value]="childelementsTv" selectionMode="single"
+                            [(selection)]="selectedChildProduct" (onRowSelect)="SetChildCardInfo($event)">
+                               <ng-template pTemplate="header" let-columns>
+                                   <tr>
+                                       <th *ngFor="let col of columns">
+                                           {{col.header}}
+                                       </th>
+                                   </tr>
+                               </ng-template>
+                               <ng-template pTemplate="body" let-rowData let-columns="columns" >
+                                   <tr [pSelectableRow]="rowData">
+                                       <td *ngFor="let col of columns">
+                                           <span>
+                                               {{rowData[col.field]}}
+                                           </span>
+                                       </td>
+                                   </tr>
+                               </ng-template>
+                           </p-table>
+                    </mat-expansion-panel>
                 </mat-accordion>
                 <button type="button" style="float: right;margin-top: 1%;margin-right: 3%;" mat-button
                     (click)="drawer.close()">
@@ -117,16 +112,16 @@
     </mat-drawer>
 
 
-    <div style="height: 400pt;">
-        <app-table-view  (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-table-view>
+    <div style="height: 400pt;" *ngIf="enableTable">
+        <!-- <app-table-view  (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-table-view> -->
         <!-- <app-table-view [displayTableViewColumns]="displayedTableViewColumns" [columnsTv]="columnsTv"
             [elementsTv]="elementsTv" (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-table-view> -->
         <!-- <app-expandable-table [displayTableViewColumns]="displayedTableViewColumns" [columnsTv]="columnsTv"
             [childTableColumns]="childTableColumns" [elementsTv]="elementsTv"
             (onTableRowSelected)="SetCardInfo($event);drawer.open()"
             (onChildTableRowSelected)="SetChildCardInfo($event)"></app-expandable-table> -->
-        <!-- <app-prime-table [columnsTv]="columnsTv" [elementsTv]="elementsTv"
-            (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-prime-table> -->
+        <app-prime-table [columnsTv]="columnsTv" [elementsTv]="elementsTv"
+            (onTableRowSelected)="SetCardInfo($event);drawer.open()"></app-prime-table>
     </div>
 
 </mat-drawer-container>

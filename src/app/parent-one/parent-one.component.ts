@@ -12,18 +12,18 @@ import { TableService } from '../services/table.service';
 export class ParentOneComponent implements OnInit {
 
   constructor(private _tableService: TableService) { }
-  columnsTv = [
-    { columnDef: 'position', header: 'No.', cell: (element: any) => `${element.position}` },
-    { columnDef: 'test', header: 'Name', cell: (element: any) => `${element.test.typename}` },
-    { columnDef: 'weight', header: 'Weight', cell: (element: any) => `${element.weight}` },
-    { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
-  ];
   // columnsTv = [
-  //   { field: 'position', header: 'Position'},
-  //   { field: 'test', header: 'Name' },
-  //   { field: 'weight', header: 'Weight' },
-  //   { field: 'symbol', header: 'Symbol' }
+  //   { columnDef: 'position', header: 'No.', cell: (element: any) => `${element.position}` },
+  //   { columnDef: 'test', header: 'Name', cell: (element: any) => `${element.test.typename}` },
+  //   { columnDef: 'weight', header: 'Weight', cell: (element: any) => `${element.weight}` },
+  //   { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
   // ];
+  columnsTv = [
+    { field: 'position', header: 'Position' },
+    { field: 'test', header: 'Name' },
+    { field: 'weight', header: 'Weight' },
+    { field: 'symbol', header: 'Symbol' }
+  ];
   childcolumnsTv = [
     { field: 'street', header: 'Street' },
     { field: 'zipCode', header: 'ZipCode' },
@@ -34,12 +34,14 @@ export class ParentOneComponent implements OnInit {
   childelementsTv: Address[];
   selectedRow: User_2 = new User_2();
   disabled = false;
-  displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
+  //displayedTableViewColumns = this.columnsTv.map(c => c.columnDef);
   date = new FormControl();
   usersData: User_2[] = [];
   selectedChildRow: Address = new Address();
   enableChildInfo: boolean = false;
   enableChildTable: boolean = false;
+  enableTable: boolean = true;
+  selectedChildProduct: Address;
   ngOnInit(): void {
     USERS_2.forEach(user => {
       if (user.addresses && Array.isArray(user.addresses) && user.addresses.length) {
@@ -49,29 +51,29 @@ export class ParentOneComponent implements OnInit {
       }
     });
     this.elementsTv = this.usersData;
-    this._tableService.sendTableInfo({ columns: this.columnsTv, elements: this.elementsTv,
-      displayCols: this.displayedTableViewColumns })
+
+    // this._tableService.setProfileObs({
+    //   columns: this.columnsTv, elements: this.elementsTv,
+
+    //   displayCols: this.displayedTableViewColumns
+    // })
+    this.enableTable = true;
+
   }
   SetCardInfo(row: any) {
-    // if(row instanceof Address){
-    //   this.enableChildInfo = true;
-    //   this.selectedChildRow = row;
-    // }
-    // else if(row instanceof User_2){
-      this.enableChildInfo = false;
-      //this.enableChildTable = false;
-      this.selectedRow = row;
-      // if(row.addresses.length > 0 ){
-      //   this.enableChildTable = true;
-      //   this.childelementsTv = row.addresses;
-      // }
-    //}
-    
+    this.enableChildInfo = false;
+    this.enableChildTable = false;
+    this.selectedRow = row;
+    if (row.addresses.length > 0) {
+      this.enableChildTable = true;
+      this.childelementsTv = row.addresses;
+    }
+
   }
 
-  SetChildCardInfo(row: any) {
+  SetChildCardInfo(event: any) {
     this.enableChildInfo = true;
-    this.selectedChildRow = row;
+    this.selectedChildRow = event.data;
   }
   step = 0;
 

@@ -8,6 +8,7 @@ export class TableService {
 
   constructor() { }
   private subject = new Subject<any>();
+  private profileObs$:BehaviorSubject<any> = new BehaviorSubject(null);
 
   public sendTableInfo(tableInfo: any) {
       this.subject.next({ columns: tableInfo.columns, elements: tableInfo.elements,
@@ -21,4 +22,12 @@ export class TableService {
   getTableInfo(): Observable<any> {
       return this.subject.asObservable();
   }
+
+  getProfileObs(): Observable<any> {
+    return this.profileObs$.asObservable();
+}
+
+setProfileObs(tableInfo: any) {
+    this.profileObs$.next(tableInfo);
+}
 }

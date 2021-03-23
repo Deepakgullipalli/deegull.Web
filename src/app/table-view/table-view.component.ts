@@ -14,7 +14,7 @@ import { TableService } from '../services/table.service';
 export class TableViewComponent implements OnInit {
 
   constructor(private _tableService: TableService) { 
-    this.tableInfosubscription = this._tableService.getTableInfo().subscribe(message => { 
+    this.tableInfosubscription = this._tableService.getProfileObs().subscribe(message => { 
       this.columnsTv = message.columns; this.elementsTv = message.elements;
       this.displayTableViewColumns = message.displayCols });
   }
