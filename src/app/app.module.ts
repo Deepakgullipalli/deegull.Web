@@ -39,6 +39,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { InputTextModule } from 'primeng/inputtext';
 import { RatingModule } from 'primeng/rating';
+import { BadgeModule } from 'primeng/badge';
 
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
@@ -101,7 +102,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
-
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './services/in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -172,9 +174,12 @@ import { MatTreeModule } from '@angular/material/tree';
 		ToastModule,
     InputTextModule,
     ProgressBarModule,
-    HttpClientModule,
     FormsModule,
     RatingModule,
+    BadgeModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
   exports: [
     MatDialogModule,
@@ -226,6 +231,7 @@ import { MatTreeModule } from '@angular/material/tree';
 
   ],
   providers: [AuthGuardService, AuthService, TestService,
+    InMemoryDataService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

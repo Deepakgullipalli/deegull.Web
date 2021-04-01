@@ -1,3 +1,8 @@
+<div *ngIf="enableObs">
+    <div *ngFor="let hero of myHeores">
+        {{hero.name}}
+    </div>
+</div>
 <mat-drawer-container autosize>
 
     <mat-drawer #drawer class="example-sidenav" mode="side" position="end">
@@ -81,7 +86,7 @@
                         <!-- <app-prime-table [columnsTv]="childcolumnsTv" [elementsTv]="childelementsTv"
                             (onChildTableRowSelected)="SetChildCardInfo($event)"></app-prime-table> -->
                             <p-table [columns]="childcolumnsTv" [value]="childelementsTv" selectionMode="single"
-                            [(selection)]="selectedChildProduct" (onRowSelect)="SetChildCardInfo($event)">
+                            [(selection)]="selectedChildRow" (onRowSelect)="SetChildCardInfo($event)">
                                <ng-template pTemplate="header" let-columns>
                                    <tr>
                                        <th *ngFor="let col of columns">

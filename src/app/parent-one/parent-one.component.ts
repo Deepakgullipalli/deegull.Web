@@ -3,6 +3,9 @@ import { FormControl } from '@angular/forms';
 import { Address, test2, USERS, USERS_2, User_2 } from '../models/expand-table-element';
 import { MatTableDataSource } from '@angular/material/table';
 import { TableService } from '../services/table.service';
+import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-parent-one',
@@ -11,13 +14,14 @@ import { TableService } from '../services/table.service';
 })
 export class ParentOneComponent implements OnInit {
 
-  constructor(private _tableService: TableService) { }
+  constructor(private _tableService: TableService,private http: HttpClient) { }
   // columnsTv = [
   //   { columnDef: 'position', header: 'No.', cell: (element: any) => `${element.position}` },
   //   { columnDef: 'test', header: 'Name', cell: (element: any) => `${element.test.typename}` },
   //   { columnDef: 'weight', header: 'Weight', cell: (element: any) => `${element.weight}` },
   //   { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
   // ];
+  private heroesUrl = 'api/heroes'; 
   columnsTv = [
     { field: 'position', header: 'Position' },
     { field: 'test', header: 'Name' },
@@ -41,7 +45,8 @@ export class ParentOneComponent implements OnInit {
   enableChildInfo: boolean = false;
   enableChildTable: boolean = false;
   enableTable: boolean = true;
-  selectedChildProduct: Address;
+  enableObs: boolean = false;
+  myHeores: any;
   ngOnInit(): void {
     USERS_2.forEach(user => {
       if (user.addresses && Array.isArray(user.addresses) && user.addresses.length) {
@@ -58,6 +63,7 @@ export class ParentOneComponent implements OnInit {
     //   displayCols: this.displayedTableViewColumns
     // })
     this.enableTable = true;
+    this.getTestData();
 
   }
   SetCardInfo(row: any) {
@@ -89,4 +95,29 @@ export class ParentOneComponent implements OnInit {
     this.step--;
   }
 
+  getTestData() {
+    this.getHeroes().subscribe((res) => {
+      let info = res;
+      this.myHeores = info;
+      this.enableObs = true;
+    });
+  }
+
+  getServiceData(): Observable<string> {
+    var test = of("Test 2");
+    setTimeout(() => {
+      test = of("Test 1");
+    }, 3000);
+    return test;
+  }
+
+  getHeroes(): Observable<Hero[]> {
+    return this.http.get<Hero[]>(this.heroesUrl)
+  }
+
+}
+
+export class Hero{
+  id: string;
+  name: string;
 }
