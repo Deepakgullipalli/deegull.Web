@@ -14,18 +14,34 @@ export class PrimeTableComponent implements OnInit {
   @Output() onTableRowSelected = new EventEmitter<any>();
   @Output() onChildTableRowSelected = new EventEmitter<any>();
   selectedProduct: User_2;
+  showSelectedItems: boolean= false;
+  selectedItems: User_2[] = [];
   constructor() { }
 
   ngOnInit(): void {
     this.products = this.elementsTv;
     this.cols = this.columnsTv;
   }
-  onRowSelect(event) {
-    this.onTableRowSelected.emit(event.data);
-  }
+  // onRowSelect(event) {
+  //   this.onTableRowSelected.emit(event.data);
+  // }
   
   ngOnChanges(){
     this.products = this.elementsTv;
     this.cols = this.columnsTv;
+  }
+
+  addProduct(product: User_2){
+    this.selectedProduct = {...product};
+    this.selectedItems.push(this.selectedProduct);
+    if(this.selectedItems.length > 0){
+      this.showSelectedItems = true;
+    }
+  }
+
+  removeProduct(product: User_2){
+    this.selectedProduct = {...product};
+    this.selectedItems = this.selectedItems.filter(val => val.name !== product.name);
+    this.showSelectedItems = this.selectedItems.length > 0 ? true : false;
   }
 }

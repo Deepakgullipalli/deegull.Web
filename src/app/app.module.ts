@@ -40,6 +40,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { InputTextModule } from 'primeng/inputtext';
 import { RatingModule } from 'primeng/rating';
 import { BadgeModule } from 'primeng/badge';
+import {ToggleButtonModule} from 'primeng/togglebutton';
 
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
@@ -177,6 +178,7 @@ import { InMemoryDataService } from './services/in-memory-data.service';
     FormsModule,
     RatingModule,
     BadgeModule,
+    ToggleButtonModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     )
