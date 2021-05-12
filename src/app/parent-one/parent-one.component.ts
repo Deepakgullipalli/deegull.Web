@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Address, test2, USERS, USERS_2, User_2 } from '../models/expand-table-element';
 import { MatTableDataSource } from '@angular/material/table';
 import { TableService } from '../services/table.service';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { SelectItem } from 'primeng/api';
+import { Dropdown } from 'primeng/dropdown';
 
 
 @Component({
@@ -22,6 +24,8 @@ export class ParentOneComponent implements OnInit {
   //   { columnDef: 'symbol', header: 'Symbol', cell: (element: any) => `${element.symbol}` },
   // ];
   private heroesUrl = 'api/heroes'; 
+  natures: SelectItem[];
+  result;
   columnsTv = [
     { field: 'position', header: 'Position' },
     { field: 'test', header: 'Name' },
@@ -48,6 +52,9 @@ export class ParentOneComponent implements OnInit {
   enableObs: boolean = false;
   myHeores: any;
   ngOnInit(): void {
+
+    this.natures=Object.keys(Fruit).map(key => ({ label: Fruit[key], value: key }));
+
     USERS_2.forEach(user => {
       if (user.addresses && Array.isArray(user.addresses) && user.addresses.length) {
         this.usersData = [...this.usersData, { ...user, child: new MatTableDataSource(user.addresses) }];
@@ -120,4 +127,10 @@ export class ParentOneComponent implements OnInit {
 export class Hero{
   id: string;
   name: string;
+}
+
+export enum Fruit{
+  annuelle="Annuelle",
+        semestrielle="Semestrielle",
+        trimestrielle="Trimestrielle"
 }
