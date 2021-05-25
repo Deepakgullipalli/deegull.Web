@@ -1,4 +1,4 @@
-<p-table [columns]="cols" [value]="products">
+<p-table [columns]="cols" [value]="products" selectionMode="single">
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th *ngFor="let col of columns">
@@ -8,7 +8,7 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns" >
-        <tr>
+        <tr [pSelectableRow]="rowData">
             <td *ngFor="let col of columns">
                 <span *ngIf="col.field != 'test'">
                     {{rowData[col.field]}}
@@ -26,7 +26,7 @@
     </ng-template>
 </p-table>
 <div *ngIf="showSelectedItems">
-    <p-table [columns]="cols" [value]="selectedItems">
+    <p-table [columns]="cols" [value]="selectedItems" selectionMode="single">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns">
@@ -36,7 +36,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns" >
-            <tr>
+            <tr [pSelectableRow]="rowData">
                 <td *ngFor="let col of columns">
                     <span *ngIf="col.field != 'test'">
                         {{rowData[col.field]}}
