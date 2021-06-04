@@ -8,7 +8,11 @@ import { HttpClient } from '@angular/common/http';
 import { SelectItem } from 'primeng/api';
 import { Dropdown } from 'primeng/dropdown';
 
-
+export enum Colors {
+  RED = <any>"RED COLOR",
+  BLUE = <any>"BLUE COLOR",
+  GREEN = <any>"GREEN COLOR"
+}
 @Component({
   selector: 'app-parent-one',
   templateUrl: './parent-one.component.html',
@@ -54,6 +58,9 @@ export class ParentOneComponent implements OnInit {
   selectedCountry: Country;
   countries: Country[];
   ngOnInit(): void {
+    let enumKey = Colors["BLUE COLOR"];
+    console.log(enumKey);
+    this.selectedCountry = {name: 'China', code: 'CN'};
     this.countries = [
       {name: 'Australia', code: 'AU'},
       {name: 'Brazil', code: 'BR'},
