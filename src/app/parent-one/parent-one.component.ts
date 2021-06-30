@@ -56,22 +56,22 @@ export class ParentOneComponent implements OnInit {
   enableObs: boolean = false;
   myHeores: any;
   selectedCountry: Country;
-  countries: Country[];
+  countries: any;
   ngOnInit(): void {
     let enumKey = Colors["BLUE COLOR"];
     console.log(enumKey);
     this.selectedCountry = {name: 'China', code: 'CN'};
     this.countries = [
-      {name: 'Australia', code: 'AU'},
-      {name: 'Brazil', code: 'BR'},
-      {name: 'China', code: 'CN'},
-      {name: 'Egypt', code: 'EG'},
-      {name: 'France', code: 'FR'},
-      {name: 'Germany', code: 'DE'},
-      {name: 'India', code: 'IN'},
-      {name: 'Japan', code: 'JP'},
-      {name: 'Spain', code: 'ES'},
-      {name: 'United States', code: 'US'}
+      {name: 'Australia', code: 'AU', cd: 'sdb'},
+      {name: 'Brazil', code: 'BR', cd: 'sdb'},
+      {name: 'China', code: 'CN', cd: 'sdb'},
+      {name: 'Egypt', code: 'EG', cd: 'sdb'},
+      {name: 'France', code: 'FR', cd: 'sdb'},
+      {name: 'Germany', code: 'DE', cd: 'sdb'},
+      {name: 'India', code: 'IN', cd: 'sdb'},
+      {name: 'Japan', code: 'JP', cd: 'sdb'},
+      {name: 'Spain', code: 'ES', cd: 'sdb'},
+      {name: 'United States', code: 'US', cd: 'sdb'}
   ];
 
   for (let i = 0; i < 5; i++) {
