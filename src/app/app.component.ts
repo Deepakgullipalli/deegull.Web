@@ -12,6 +12,7 @@ import { SortDescriptor, orderBy } from '@progress/kendo-data-query';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { Task, products } from './models/task';
 import { Element, ELEMENT_DATA} from '../app/models/table-view-element';
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',

@@ -105,6 +105,8 @@ import { MatTreeModule } from '@angular/material/tree';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
+import { AddDynamicRowComponent } from './add-dynamic-row/add-dynamic-row.component';
+import { AddRowDirective } from './directives/add-row.directive';
 
 @NgModule({
   declarations: [
@@ -128,7 +130,9 @@ import { InMemoryDataService } from './services/in-memory-data.service';
     ParentOneComponent,
     ParentTwoComponent,
     ExpandableTableComponent,
-    PrimeTableComponent
+    PrimeTableComponent,
+    AddDynamicRowComponent,
+    AddRowDirective
   ],
   imports: [
     AppRoutingModule,
