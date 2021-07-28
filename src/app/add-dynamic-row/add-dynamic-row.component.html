@@ -1,4 +1,4 @@
-<p-table [value]="products1" dataKey="id" >
+<!-- <p-table [value]="products1" dataKey="id" >
     <ng-template pTemplate="header">
         <tr>
             <th>Code</th>
@@ -51,7 +51,137 @@
             </td>
         </tr>
     </ng-template>
+</p-table> -->
+
+<!-- <p-table [value]="products1" dataKey="id" editMode="row">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th style="width:8rem"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="product">
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="product.code">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.code}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="product.name" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.name}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-dropdown [options]="statuses" [(ngModel)]="product.inventoryStatus" [style]="{'width':'100%'}"></p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.inventoryStatus}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="product.price">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.price | currency: 'USD'}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td style="text-align:center">
+                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product)" class="p-button-rounded p-button-text"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+            </td>
+        </tr>
+    </ng-template>
 </p-table>
 <br/>
-<!-- <button pButton type="button"icon="pi pi-plus" class="ui-button-info" [label]="'Add'"
+<button pButton type="button"icon="pi pi-plus" class="ui-button-info" [label]="'Add'"
   pAddRow [table]="dt" [newRow]="newRow()"></button> -->
+
+  <!-- <button pButton type="button"icon="pi pi-plus" class="ui-button-info" [label]="'Add'"
+  (click)="onRowAdd()"></button> -->
+
+  <p-table #dt [value]="cars" dataKey="carindex" editMode="row">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Vin</th>
+            <th>Year</th>
+            <th>Brand</th>
+            <th>Color</th>
+            <th style="width:8em"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="rowData">
+            <td>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                    <input pInputText type="text" [(ngModel)]="rowData.vin" required>
+                </ng-template>
+                <ng-template pTemplate="output">
+                    {{rowData.vin}}
+                </ng-template>
+            </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="rowData.year" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.year}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                    <p-dropdown [options]="brands" [(ngModel)]="rowData.brand" placeholder="Select Make"
+                    [style]="{'width':'100%'}"></p-dropdown>
+                </ng-template>
+                <ng-template pTemplate="output">
+                    {{rowData.brand}}
+                </ng-template>
+            </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="rowData.color">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.color}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td style="text-align:center">
+                <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" (click)="onRowEditInit(rowData)"></button>
+                <!-- <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success" style="margin-right: .5em" (click)="onRowEditSave(rowData)"></button> -->
+                <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger" (click)="onRowEditCancel(rowData, ri)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+<br/>
+<br/>
+<button pButton type="button"icon="pi pi-plus" class="ui-button-info" [label]="'Add'"
+  pAddRow [table]="dt" [newRow]="newRow()"></button>
