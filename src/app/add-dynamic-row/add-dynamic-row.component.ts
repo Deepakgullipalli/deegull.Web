@@ -27,6 +27,10 @@ export class AddDynamicRowComponent implements OnInit {
   caritem = {} as Car;
   dt: Table;
   @ViewChild('dt') public dataTable: Table;
+  public shapeValues: Car[] = [{brand: "", color: "", vin: "", year: ""}];
+    cities: any;
+  // statuses: SelectItem[];
+  // cars: Array<Car>;
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
@@ -34,7 +38,10 @@ export class AddDynamicRowComponent implements OnInit {
     // this.productService.getProductsSmall().then(data => this.products2 = data);
 
     // this.statuses = [{ label: 'In Stock', value: 'INSTOCK' }, { label: 'Low Stock', value: 'LOWSTOCK' }, { label: 'Out of Stock', value: 'OUTOFSTOCK' }]
-    this.cars = [{ brand: "", color: "", vin: "", year: "", carindex: 0 }];
+    //this.cars = [{ brand: "", color: "", vin: "", year: "", carindex: 0 }];
+    
+    this.cities = ["Paris", "Marseille", "Nice"];
+    this.cars = [{ brand: "", color: "", vin: "", year: ""}];
     //this.dt.initRowEdit(this.cars[0]);
     //this.newRow();
     //this.onRowEditInit(this.cars[0]);
@@ -102,7 +109,7 @@ export class AddDynamicRowComponent implements OnInit {
   }
 
   onRowEditSave(car: Car) {
-    delete this.clonedCars[car.carindex];
+    //delete this.clonedCars[car.carindex];
   }
 
   onRowEditCancel(car: Car, index: number) {
@@ -110,13 +117,28 @@ export class AddDynamicRowComponent implements OnInit {
     // delete this.clonedCars[car.carindex];
     if (this.cars.length > 1) {
       this.cars.forEach((value, index) => {
-        if (value.carindex == car.carindex) this.cars.splice(index, 1);
+        //if (value.carindex == car.carindex) this.cars.splice(index, 1);
       });
     }
   }
 
   newRow() {
     return { brand: '', color: '', vin: '', year: '', carindex: this.cars.length  };
+  }
+
+  addShape(value1: string, value2: string, value3: string, value4: string){
+    this.shapeValues.push({brand: value1, color: value2, vin:value3, year:value4});
+  }
+
+  removeShape(value: any) {
+    const index = this.shapeValues.indexOf(value);
+    if(index !== -1) {
+      this.shapeValues.splice(index, 1);
+    }
+  }
+
+  onChange(deviceValue, sv : Car) {
+    sv.vin = deviceValue;
   }
 }
 
@@ -125,7 +147,7 @@ export interface Car {
   year: string;
   brand: string;
   color: string;
-  carindex: number;
+  //carindex: number;
 }
 
 
