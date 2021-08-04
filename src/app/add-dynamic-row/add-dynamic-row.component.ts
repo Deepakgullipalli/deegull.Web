@@ -41,7 +41,8 @@ export class AddDynamicRowComponent implements OnInit {
     //this.cars = [{ brand: "", color: "", vin: "", year: "", carindex: 0 }];
     
     this.cities = ["Paris", "Marseille", "Nice"];
-    this.cars = [{ brand: "", color: "", vin: "", year: ""}];
+    // this.cars = [{ brand: "", color: "", vin: "", year: ""}];
+    this.cars = [];
     //this.dt.initRowEdit(this.cars[0]);
     //this.newRow();
     //this.onRowEditInit(this.cars[0]);
@@ -115,11 +116,15 @@ export class AddDynamicRowComponent implements OnInit {
   onRowEditCancel(car: Car, index: number) {
     // this.cars[index] = this.clonedCars[car.carindex];
     // delete this.clonedCars[car.carindex];
-    if (this.cars.length > 1) {
-      this.cars.forEach((value, index) => {
-        //if (value.carindex == car.carindex) this.cars.splice(index, 1);
-      });
+    const indexx: number = this.cars.indexOf(car);
+    if (indexx !== -1) {
+        this.cars.splice(indexx, 1);
     }
+    // if (this.cars.length > 1) {
+    //   this.cars.forEach((value, index) => {
+    //     this.cars.splice(index, 1);
+    //   });
+    // }
   }
 
   newRow() {

@@ -1,0 +1,32 @@
+
+  
+<div *ngFor="let shapeValue of shapeValues; index as i">
+    <div>
+        <input id="{{ 'shape-x-' + i }}" [value]="shapeValue.brand" class="form-control">
+    </div>
+    <div>
+        <input id="{{ 'shape-y-' + i }}" [value]="shapeValue.color" class="form-control">
+    </div>
+    <div>
+        <!-- <input id="{{ 'shape-z-' + i }}" [value]="shapeValue.vin" class="form-control"> -->
+        <select id="drpOption" class="form-control" (change)="onChange($event.target.value, shapeValue)">
+            <option *ngFor="let city of cities" [value]="city">{{city}}</option> 
+        </select>
+        <!-- <p-dropdown [options]="statuses" [(ngModel))]="shapeValue.vin">
+                </p-dropdown> -->
+    </div>
+    <div>
+        <input id="{{ 'shape-u-' + i }}" [value]="shapeValue.year" class="form-control">
+    </div>
+    <div>
+        <button pButton pRipple type="button" class="ml-2" icon="pi pi-times" (click)="removeShape(shapeValue)"
+            class="p-button-rounded p-button-secondary p-button-text"></button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="mr-2 mt-1 col-3">
+        <p-button class="mr-2" (click)="addShape('','','','')" label="Add Shape"></p-button>
+    </div>
+    
+</div>

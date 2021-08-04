@@ -107,6 +107,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { AddDynamicRowComponent } from './add-dynamic-row/add-dynamic-row.component';
 import { AddRowDirective } from './directives/add-row.directive';
+import { NewAddRowComponent } from './new-add-row/new-add-row.component';
 
 @NgModule({
   declarations: [
@@ -132,7 +133,8 @@ import { AddRowDirective } from './directives/add-row.directive';
     ExpandableTableComponent,
     PrimeTableComponent,
     AddDynamicRowComponent,
-    AddRowDirective
+    AddRowDirective,
+    NewAddRowComponent
   ],
   imports: [
     AppRoutingModule,
