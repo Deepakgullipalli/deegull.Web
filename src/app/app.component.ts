@@ -9,9 +9,11 @@ import { process } from '@progress/kendo-data-query';
 import { DataBindingDirective } from '@progress/kendo-angular-grid';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { SortDescriptor, orderBy } from '@progress/kendo-data-query';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { Task, products } from './models/task';
-import { Element, ELEMENT_DATA} from '../app/models/table-view-element';
+import { Element, ELEMENT_DATA } from '../app/models/table-view-element';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -40,13 +42,13 @@ import { Element, ELEMENT_DATA} from '../app/models/table-view-element';
 export class AppComponent {
     @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
     //public gridView: any[];
-    
+
     money = 1824523;
     public mySelection: string[] = [];
     public options: string[] = ["10", "20", "50"];
-    
+
     selectedQuantity = "10";
-    public apiOptions: number[] = [1,2,3];
+    public apiOptions: number[] = [1, 2, 3];
     public drpOptions: string[] = [];
     public multiple = false;
     public allowUnsort = true;
@@ -54,47 +56,68 @@ export class AppComponent {
         name: 'Indeterminate',
         completed: false,
         subtasks: [
-          {name: 'Primary', completed: false},
-          {name: 'Accent', completed: false},
-          {name: 'Warn', completed: false}
+            { name: 'Primary', completed: false },
+            { name: 'Accent', completed: false },
+            { name: 'Warn', completed: false }
         ]
-      };
+    };
     public sort: SortDescriptor[] = [{
-      field: 'ProductName',
-      dir: 'asc'
+        field: 'ProductName',
+        dir: 'asc'
     }];
     public gridView: GridDataResult;
     public products: any[] = products;
     panelOpenState = false;
+    phone_number: any;
     constructor(private primengConfig: PrimeNGConfig, public dialog: MatDialog,
-        private testService: TestService, private modalService: NgbModal) {
-            this.loadProducts();
-         }
+        private testService: TestService, private modalService: NgbModal,
+        private httpClient: HttpClient) {
+        this.loadProducts();
+    }
 
     ngOnInit() {
+        this.sendPostRequest("test");
         this.primengConfig.ripple = true;
         //this.gridView = this.gridData;
         this.generateDropDownList();
     }
 
-    generateDropDownList(){
+    proper = false;
+    phone: any;
+    valPhone() {
+        // first remove unwanted characters
+        let phone = this.phone;
+        phone = phone.replace(/[^0-9+#]/g, "");
+        // at least 10 in number
+        if (phone.length >= 10) {
+            this.proper = phone;
+            return true;
+        } else {
+            this.proper = false;
+        }
+        return false;
+    }
+
+    sendPostRequest(data: any): Observable<any> {
+        return this.httpClient.put<any>("http://localhost:2818/api/Values", data);
+    }
+
+    generateDropDownList() {
         this.apiOptions.forEach(element => {
-            if(element == 1){
+            if (element == 1) {
                 this.drpOptions.push("xyz");
                 this.selectedQuantity = "xyz"
             }
-            if(element == 2){
+            if (element == 2) {
                 this.drpOptions.push("abc");
             }
-            if(element == 3){
+            if (element == 3) {
                 this.drpOptions.push("pqr");
             }
         });
     }
 
     allComplete: boolean = false;
-
-    
 
     public sortChange(sort: SortDescriptor[]): void {
         this.sort = sort;
@@ -122,7 +145,7 @@ export class AppComponent {
         });
     }
 
-    OnCommentsClick(){
+    OnCommentsClick() {
         this.open();
         this.testService.sendMessage("TestId");
     }
@@ -132,7 +155,7 @@ export class AppComponent {
         modalRef.componentInstance.name = 'Deepak';
     }
 
-    
+
 }
 
 /* tslint:disable:whitespace */

@@ -108,6 +108,7 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { AddDynamicRowComponent } from './add-dynamic-row/add-dynamic-row.component';
 import { AddRowDirective } from './directives/add-row.directive';
 import { NewAddRowComponent } from './new-add-row/new-add-row.component';
+import { PhoneNumberDirective } from './shared/directives/phone-number.directive';
 
 @NgModule({
   declarations: [
@@ -134,7 +135,8 @@ import { NewAddRowComponent } from './new-add-row/new-add-row.component';
     PrimeTableComponent,
     AddDynamicRowComponent,
     AddRowDirective,
-    NewAddRowComponent
+    NewAddRowComponent,
+    PhoneNumberDirective
   ],
   imports: [
     AppRoutingModule,
