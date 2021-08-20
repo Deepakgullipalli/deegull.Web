@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  dev-database:
+    image: postgres:latest
+    volumes:
+      - databasestore:/var/lib/postgres
+     
+  dev-eventing:
+    image: rabbitmq:3.8-management
+
+  dev-pgadmin:
+    image: dpage/pgadmin4
+    depends_on: 
+      - dev-database

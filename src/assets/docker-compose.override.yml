@@ -1,0 +1,26 @@
+version: '3.5'
+
+services:
+  dev-database:
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=welcome123#
+  
+  dev-eventing:
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  
+  dev-pgadmin:
+    environment: 
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=welcome123#
+      - PGADMIN_DEFAULT_EMAIL=test@test.com
+      - PGADMIN_DEFAULT_PASSWORD=welcome123#
+    ports:
+      - "8080:80"
+        
+volumes:
+  databasestore:
