@@ -92,6 +92,10 @@ export class AppComponent {
     addCheckBox(){
         let cat = {name: 'Bunny', key: 'B'};
         this.categories.push(cat);
+        
+    }
+    save(){
+        let signedDocs = this.selectedCategories;
     }
     proper = false;
     phone: any;
