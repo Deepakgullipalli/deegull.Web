@@ -14,7 +14,7 @@ import { Task, products } from './models/task';
 import { Element, ELEMENT_DATA } from '../app/models/table-view-element';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import {MenuItem} from 'primeng/api';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -43,6 +43,13 @@ export class AppComponent {
     @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
     //public gridView: any[];
 
+    selectedCities: string[] = [];
+
+    selectedCategories: any[] = ['Technology', 'Sports'];
+
+    categories: any[] = [{name: 'Accounting', key: 'A'}, {name: 'Marketing', key: 'M'}, {name: 'Production', key: 'P'}, {name: 'Research', key: 'R'}];
+
+    checked: boolean = false;
     money = 1824523;
     public mySelection: string[] = [];
     public options: string[] = ["10", "20", "50"];
@@ -80,8 +87,12 @@ export class AppComponent {
         this.primengConfig.ripple = true;
         //this.gridView = this.gridData;
         this.generateDropDownList();
+        this.selectedCategories = this.categories.slice(1,3);
     }
-
+    addCheckBox(){
+        let cat = {name: 'Bunny', key: 'B'};
+        this.categories.push(cat);
+    }
     proper = false;
     phone: any;
     valPhone() {

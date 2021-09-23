@@ -13,7 +13,24 @@ export class NewAddRowComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.cars = [];
+    // this.cars = [];
+    this.cars = [
+      { brand: 'Audi', color: 'Blue', vin: '123', year: '2006' },
+      { brand: 'Toyota', color: 'Blue', vin: '345', year: '2012' },
+      { brand: 'Honda', color: 'Blue', vin: '567', year: '2019' },
+      { brand: 'Honda', color: 'Blue', vin: '890', year: '2008' }
+    ].sort((car1, car2) => {
+      if (car1.brand > car2.brand) {
+        return 1;
+      }
+
+      if (car1.brand < car2.brand) {
+        return -1;
+      }
+
+      return 0;
+    });
+
     this.brands = [
       { label: "Aud", value: "Aud" },
       { label: "BMW", value: "BMW" },

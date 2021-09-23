@@ -174,11 +174,12 @@
                 </p-cellEditor>
             </td>
             <td style="text-align:center">
-                <!-- <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil"
-                    class="ui-button-info" (click)="onRowEditInit(rowData)"></button> -->
+                <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil"
+                    class="ui-button-info" ></button> 
 
                 <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times"
                     class="ui-button-danger" (click)="onRowEditCancel(rowData, ri)"></button>
+                
             </td>
         </tr>
     </ng-template>
@@ -187,3 +188,65 @@
 <br />
 <button pButton type="button" icon="pi pi-plus" class="ui-button-info" [label]="'Add'" pAddRow [table]="dt"
     [newRow]="newRow()"></button>
+
+    <p-table [value]="products1" dataKey="id" editMode="row">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th style="width:8rem"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="product">
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.code">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.code}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.name" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.name}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-dropdown [options]="statuses" [(ngModel)]="product.inventoryStatus" [style]="{'width':'100%'}"></p-dropdown>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.inventoryStatus}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.price">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.price | currency: 'USD'}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="text-align:center">
+                    <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit2(product)" class="p-button-rounded p-button-text"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave2(product)" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel2(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+

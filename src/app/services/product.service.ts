@@ -44,9 +44,12 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
   private _jsonURL = 'assets/sample.json';
-//   getProductsSmall(): Observable<any> {
-//       return Product_Sample;
-//   }
+  getProductsSmall() {
+    return this.http.get<any>('assets/products-small.json')
+    .toPromise()
+    .then(res => <Product[]>res.data)
+    .then(data => { return Product_Sample; });
+}
 
   getProducts() {
       return this.http.get<any>('assets/products.json')

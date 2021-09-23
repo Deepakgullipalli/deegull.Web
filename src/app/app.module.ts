@@ -109,6 +109,7 @@ import { AddDynamicRowComponent } from './add-dynamic-row/add-dynamic-row.compon
 import { AddRowDirective } from './directives/add-row.directive';
 import { NewAddRowComponent } from './new-add-row/new-add-row.component';
 import { PhoneNumberDirective } from './shared/directives/phone-number.directive';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -187,6 +188,7 @@ import { PhoneNumberDirective } from './shared/directives/phone-number.directive
     RatingModule,
     BadgeModule,
     ToggleButtonModule,
+    CheckboxModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     )

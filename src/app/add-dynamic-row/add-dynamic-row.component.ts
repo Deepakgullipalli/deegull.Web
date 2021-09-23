@@ -27,41 +27,43 @@ export class AddDynamicRowComponent implements OnInit {
   caritem = {} as Car;
   dt: Table;
   @ViewChild('dt') public dataTable: Table;
-  public shapeValues: Car[] = [{brand: "", color: "", vin: "", year: ""}];
-    cities: any;
+  public shapeValues: Car[] = [{ brand: "", color: "", vin: "", year: "" }];
+  cities: any;
   // statuses: SelectItem[];
   // cars: Array<Car>;
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    // this.products1 = Product_Sample
-    // this.productService.getProductsSmall().then(data => this.products2 = data);
+     this.products1 = Product_Sample;
+    // this.productService.getProductsSmall().then(data => 
+    //   this.products1 = data
+    // );
 
-    // this.statuses = [{ label: 'In Stock', value: 'INSTOCK' }, { label: 'Low Stock', value: 'LOWSTOCK' }, { label: 'Out of Stock', value: 'OUTOFSTOCK' }]
+    this.statuses = [{ label: 'In Stock', value: 'INSTOCK' }, { label: 'Low Stock', value: 'LOWSTOCK' }, { label: 'Out of Stock', value: 'OUTOFSTOCK' }]
     //this.cars = [{ brand: "", color: "", vin: "", year: "", carindex: 0 }];
-    
+
     this.cities = ["Paris", "Marseille", "Nice"];
     // this.cars = [{ brand: "", color: "", vin: "", year: ""}];
-    this.cars = [];
+    //this.cars = [];
     //this.dt.initRowEdit(this.cars[0]);
     //this.newRow();
     //this.onRowEditInit(this.cars[0]);
-    // this.cars = [
-    //   { brand: "Audi", color: "Blue", vin: "123", year: "2006", dKey: "1" },
-    //   { brand: "Toyota", color: "Blue", vin: "345", year: "2012" , dKey: "1"},
-    //   { brand: "Honda", color: "Blue", vin: "567", year: "2019" , dKey: "1"},
-    //   { brand: "Honda", color: "Blue", vin: "890", year: "2008", dKey: "1" }
-    // ].sort((car1, car2) => {
-    //   if (car1.brand > car2.brand) {
-    //     return 1;
-    //   }
+    this.cars = [
+      { brand: "Audi", color: "Blue", vin: "123", year: "2006", dKey: "1" },
+      { brand: "Toyota", color: "Blue", vin: "345", year: "2012" , dKey: "1"},
+      { brand: "Honda", color: "Blue", vin: "567", year: "2019" , dKey: "1"},
+      { brand: "Honda", color: "Blue", vin: "890", year: "2008", dKey: "1" }
+    ].sort((car1, car2) => {
+      if (car1.brand > car2.brand) {
+        return 1;
+      }
 
-    //   if (car1.brand < car2.brand) {
-    //     return -1;
-    //   }
+      if (car1.brand < car2.brand) {
+        return -1;
+      }
 
-    //   return 0;
-    // });
+      return 0;
+    });
 
     this.brands = [
       { label: "Audi", value: "Audi" },
@@ -106,7 +108,7 @@ export class AddDynamicRowComponent implements OnInit {
 
 
   onRowEditInit(car: Car) {
-    //this.clonedCars[car.carindex] = { ...car };
+    this.clonedCars[car.vin] = { ...car };
   }
 
   onRowEditSave(car: Car) {
@@ -118,7 +120,7 @@ export class AddDynamicRowComponent implements OnInit {
     // delete this.clonedCars[car.carindex];
     const indexx: number = this.cars.indexOf(car);
     if (indexx !== -1) {
-        this.cars.splice(indexx, 1);
+      this.cars.splice(indexx, 1);
     }
     // if (this.cars.length > 1) {
     //   this.cars.forEach((value, index) => {
@@ -128,23 +130,43 @@ export class AddDynamicRowComponent implements OnInit {
   }
 
   newRow() {
-    return { brand: '', color: '', vin: '', year: '', carindex: this.cars.length  };
+    return { brand: '', color: '', vin: '', year: '', carindex: this.cars.length };
   }
 
-  addShape(value1: string, value2: string, value3: string, value4: string){
-    this.shapeValues.push({brand: value1, color: value2, vin:value3, year:value4});
+  addShape(value1: string, value2: string, value3: string, value4: string) {
+    this.shapeValues.push({ brand: value1, color: value2, vin: value3, year: value4 });
   }
 
   removeShape(value: any) {
     const index = this.shapeValues.indexOf(value);
-    if(index !== -1) {
+    if (index !== -1) {
       this.shapeValues.splice(index, 1);
     }
   }
 
-  onChange(deviceValue, sv : Car) {
+  onChange(deviceValue, sv: Car) {
     sv.vin = deviceValue;
   }
+
+  onRowEditInit2(product: Product) {
+    this.clonedProducts[product.id] = { ...product };
+  }
+
+  onRowEditSave2(product: Product) {
+    if (product.price > 0) {
+      delete this.clonedProducts[product.id];
+      //this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product is updated' });
+    }
+    else {
+      //this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Invalid Price' });
+    }
+  }
+
+  onRowEditCancel2(product: Product, index: number) {
+    this.products2[index] = this.clonedProducts[product.id];
+    delete this.products2[product.id];
+  }
+
 }
 
 export interface Car {
