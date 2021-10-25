@@ -110,6 +110,7 @@ import { AddRowDirective } from './directives/add-row.directive';
 import { NewAddRowComponent } from './new-add-row/new-add-row.component';
 import { PhoneNumberDirective } from './shared/directives/phone-number.directive';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ResponsiveTableComponent } from './responsive-table/responsive-table.component';
 
 @NgModule({
   declarations: [
@@ -137,7 +138,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     AddDynamicRowComponent,
     AddRowDirective,
     NewAddRowComponent,
-    PhoneNumberDirective
+    PhoneNumberDirective,
+    ResponsiveTableComponent
   ],
   imports: [
     AppRoutingModule,

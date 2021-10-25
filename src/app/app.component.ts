@@ -76,6 +76,8 @@ export class AppComponent {
     public products: any[] = products;
     panelOpenState = false;
     phone_number: any;
+    testAgreements : Agreement[] = [];
+    selectedAgreements : Agreement[] = [];
     constructor(private primengConfig: PrimeNGConfig, public dialog: MatDialog,
         private testService: TestService, private modalService: NgbModal,
         private httpClient: HttpClient) {
@@ -83,11 +85,13 @@ export class AppComponent {
     }
 
     ngOnInit() {
+        this.testAgreements = myAgreements;
+        this.selectedAgreements = this.testAgreements.filter( x => x.IsSigned == true);
         this.sendPostRequest("test");
         this.primengConfig.ripple = true;
         //this.gridView = this.gridData;
         this.generateDropDownList();
-        this.selectedCategories = this.categories.slice(1,3);
+        this.selectedCategories = this.categories.filter(x => x.key == "A");
     }
     addCheckBox(){
         let cat = {name: 'Bunny', key: 'B'};
@@ -172,7 +176,23 @@ export class AppComponent {
 
 
 }
-
+export class TestAgreement{
+    agreements : Agreement[] = [];
+}
+export class Agreement{
+        DocumentName: string;
+        IsSigned: boolean;
+}
+export const myAgreements: Agreement[] = [
+    {
+        DocumentName : "Test1",
+        IsSigned : true
+    },
+    {
+        DocumentName : "Test2",
+        IsSigned : false
+    }
+];
 /* tslint:disable:whitespace */
 /* tslint:disable:max-line-length */
 
