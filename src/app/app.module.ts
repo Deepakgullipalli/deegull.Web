@@ -111,6 +111,11 @@ import { NewAddRowComponent } from './new-add-row/new-add-row.component';
 import { PhoneNumberDirective } from './shared/directives/phone-number.directive';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ResponsiveTableComponent } from './responsive-table/responsive-table.component';
+import { MyPrimengSelectionTableComponent } from './my-primeng-selection-table/my-primeng-selection-table.component';
+
+import { MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -139,7 +144,8 @@ import { ResponsiveTableComponent } from './responsive-table/responsive-table.co
     AddRowDirective,
     NewAddRowComponent,
     PhoneNumberDirective,
-    ResponsiveTableComponent
+    ResponsiveTableComponent,
+    MyPrimengSelectionTableComponent
   ],
   imports: [
     AppRoutingModule,
@@ -191,6 +197,7 @@ import { ResponsiveTableComponent } from './responsive-table/responsive-table.co
     BadgeModule,
     ToggleButtonModule,
     CheckboxModule,
+    ConfirmDialogModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     )
@@ -244,7 +251,7 @@ import { ResponsiveTableComponent } from './responsive-table/responsive-table.co
     ScrollingModule
 
   ],
-  providers: [AuthGuardService, AuthService, TestService,
+  providers: [AuthGuardService, AuthService, TestService, MessageService, ConfirmationService,
     InMemoryDataService,
     {
       provide: HTTP_INTERCEPTORS,

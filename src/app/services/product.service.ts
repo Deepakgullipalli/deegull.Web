@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -113,18 +114,6 @@ export class ProductService {
   }
 }
 
-export interface Product {
-  id?:string;
-  code?:string;
-  name?:string;
-  description?:string;
-  price?:number;
-  quantity?:number;
-  inventoryStatus?:string;
-  category?:string;
-  image?:string;
-  rating?:number;
-}
 
 export const Product_Sample : Product[] =
 [

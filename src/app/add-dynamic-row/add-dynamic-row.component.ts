@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Table } from 'primeng/table';
-import { Product, ProductService } from '../services/product.service';
+import { Product } from '../models/product';
+import { ProductService } from '../services/product.service';
 import { Product_Sample } from '../services/product.service';
 @Component({
   selector: 'app-add-dynamic-row',

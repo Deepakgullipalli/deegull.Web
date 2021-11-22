@@ -30,6 +30,13 @@ export class MyMatTableComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
+//  scrollRowToView(selectedPoint) {
+//     const row = this.rows.find(r => 
+//     r.element.nativeElement.getAttribute('serialNumber') === selectedPoint.serialNumber);
+//     if (row != null) {
+//     row.element.nativeElement.scrollIntoView( {behavior: 'smooth', block: 'center', inline : 'center'});
+//  }
 }
 
 export interface Element {
