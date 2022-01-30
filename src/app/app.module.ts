@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -116,6 +116,7 @@ import { MyPrimengSelectionTableComponent } from './my-primeng-selection-table/m
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { FormValidationComponent } from './form-validation/form-validation.component';
 
 @NgModule({
   declarations: [
@@ -145,7 +146,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     NewAddRowComponent,
     PhoneNumberDirective,
     ResponsiveTableComponent,
-    MyPrimengSelectionTableComponent
+    MyPrimengSelectionTableComponent,
+    FormValidationComponent
   ],
   imports: [
     AppRoutingModule,
@@ -154,6 +156,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     DialogModule,
     ButtonModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
     NgbModule,
