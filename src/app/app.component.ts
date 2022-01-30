@@ -12,7 +12,7 @@ import { SortDescriptor, orderBy } from '@progress/kendo-data-query';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { Task, products } from './models/task';
 import { Element, ELEMENT_DATA } from '../app/models/table-view-element';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {MenuItem} from 'primeng/api';
 @Component({
@@ -82,6 +82,17 @@ export class AppComponent {
         private testService: TestService, private modalService: NgbModal,
         private httpClient: HttpClient) {
         this.loadProducts();
+    }
+    
+    login(){
+        const body = new HttpParams()
+          .set('username', "mayank@mt.com")
+          .set('password', "Salesforce@2022qofSZUxPfTVeYs4c7EVmAbLwW")
+          .set('grant_type', 'password')
+          .set('client_id', "3MVG9G9pzCUSkzZtRqdaHQx2nrvBTA9i_VWgbvl_cEXvQgjtCg2j7A1uCMw_t9D5i1VC2Dyecm8IJtmQfgEby")
+          .set('client_secret', 'B4EBD0DDAE61BD953D7D20A7787E5CE57CA0F205B03E9BA55C394C8E8D890747');
+    
+        var res = this.httpClient.post<any>("https://login.salesforce.com/services/oauth2/token", body);
     }
 
     ngOnInit() {
