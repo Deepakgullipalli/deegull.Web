@@ -11,6 +11,8 @@ export class FormValidationComponent implements OnInit {
 
   form: FormGroup;
   submitted = false;
+  testString: string[] = [];
+  disableMe: boolean = true;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -61,6 +63,14 @@ export class FormValidationComponent implements OnInit {
   onReset(): void {
     this.submitted = false;
     this.form.reset();
+  }
+
+  onAdd(): void{
+    this.testString.push("Hello Bunny");
+    console.log(this.testString.length > 0);
+    if(this.testString.length > 0){
+      this.disableMe = false;
+    }
   }
 
 }
