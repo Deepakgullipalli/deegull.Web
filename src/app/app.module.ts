@@ -117,6 +117,7 @@ import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormValidationComponent } from './form-validation/form-validation.component';
+import { TempChildComponent } from './temp-child/temp-child.component';
 
 @NgModule({
   declarations: [
@@ -147,7 +148,8 @@ import { FormValidationComponent } from './form-validation/form-validation.compo
     PhoneNumberDirective,
     ResponsiveTableComponent,
     MyPrimengSelectionTableComponent,
-    FormValidationComponent
+    FormValidationComponent,
+    TempChildComponent
   ],
   imports: [
     AppRoutingModule,
