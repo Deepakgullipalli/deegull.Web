@@ -118,6 +118,7 @@ import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormValidationComponent } from './form-validation/form-validation.component';
 import { TempChildComponent } from './temp-child/temp-child.component';
+import { MultipleExpansionPanelComponent } from './multiple-expansion-panel/multiple-expansion-panel.component';
 
 @NgModule({
   declarations: [
@@ -149,7 +150,8 @@ import { TempChildComponent } from './temp-child/temp-child.component';
     ResponsiveTableComponent,
     MyPrimengSelectionTableComponent,
     FormValidationComponent,
-    TempChildComponent
+    TempChildComponent,
+    MultipleExpansionPanelComponent
   ],
   imports: [
     AppRoutingModule,
